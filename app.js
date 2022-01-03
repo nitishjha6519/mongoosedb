@@ -37,7 +37,9 @@ app.get("/login",  function(req,res){
 
 });
 
-app.post("/", function(req,res){
+const dataPost= async function() {
+	 
+        await app.post("/", function(req,res){
 	console.log(req.body);
 	var name1=req.body.name; 
 	var email1=req.body.email;
@@ -48,7 +50,11 @@ app.post("/", function(req,res){
 		name: req.body.name,
 		email: req.body.email,
 	});
-	user.save(function(err){
+
+
+
+
+	 user.save(function(err){
 		if(err){
 			console.log(err);
 		}
@@ -58,8 +64,8 @@ app.post("/", function(req,res){
 	});
 
 });
-
-
+}
+dataPost();
 app.post("/login", function(req,res){
 	var name=req.body.name; 
 	var email=req.body.email;
