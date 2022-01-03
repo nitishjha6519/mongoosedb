@@ -1,8 +1,17 @@
 const express= require("express");
 const bodyParser= require("body-parser");
 const mongoose=require("mongoose");
+require('dotenv').config();
+const db = process.env.db;
 
-mongoose.connect("mongodb://localhost:27017/signupDB");
+try{
+mongoose.connect(db);	
+
+console.log("Mongodb is connected");
+}catch (err) {
+  console.error(err);
+  process.exit(1);
+}
 
 const signupSchema= new mongoose.Schema({
 	name: String,
